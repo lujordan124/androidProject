@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,7 +17,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-//    CheckBox checkBox = (CheckBox) findViewById(R.id.checkbox1);
+    CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,19 +54,19 @@ public class MainActivity extends AppCompatActivity {
                 Intent dataView = new Intent(getApplicationContext(), DataActivity.class);
                 switch (x) {
                     case 0:
-//                        checkBox = (CheckBox) findViewById(R.id.checkbox1);
+                        checkBox = (CheckBox) findViewById(R.id.checkbox1);
                         dataView.putExtra("task", ((TextView) findViewById(R.id.item1)).getText().toString());
                         dataView.putExtra("description", "Complete android checklist project by specified due date");
                         dataView.putExtra("finished", ((CheckBox) findViewById(R.id.checkbox1)).isChecked());
                         break;
                     case 1:
-//                        checkBox = (CheckBox) findViewById(R.id.checkbox2);
+                        checkBox = (CheckBox) findViewById(R.id.checkbox2);
                         dataView.putExtra("task", ((TextView) findViewById(R.id.item2)).getText().toString());
                         dataView.putExtra("description", "Clear out the sink and put the dishes in the dishwasher.");
                         dataView.putExtra("finished", ((CheckBox) findViewById(R.id.checkbox2)).isChecked());
                         break;
                     case 2:
-//                        checkBox = (CheckBox) findViewById(R.id.checkbox3);
+                        checkBox = (CheckBox) findViewById(R.id.checkbox3);
                         dataView.putExtra("task", ((TextView) findViewById(R.id.item3)).getText().toString());
                         dataView.putExtra("description", "Read the pages specified in the syllabus");
                         dataView.putExtra("finished", ((CheckBox) findViewById(R.id.checkbox3)).isChecked());
@@ -100,12 +101,18 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == 1) {
-//            if (resultCode == RESULT_OK) {
-//                checkBox.setChecked(data.getExtras().getBoolean("checked"));
-//            }
-//        }
-//    }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.w("HI", "helloooooooooo");
+        if (requestCode == 1) {
+            Log.w("HI2", "teammmm: "+resultCode);
+
+            if (resultCode == RESULT_OK) {
+                Log.w("gg", "test");
+
+                checkBox.setChecked(data.getBooleanExtra("checked", false));
+//                checkBox.setChecked(true);
+            }
+        }
+    }
 }

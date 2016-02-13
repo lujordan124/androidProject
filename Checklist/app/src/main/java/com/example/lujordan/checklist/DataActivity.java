@@ -9,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.util.Log;
+
 
 public class DataActivity extends AppCompatActivity {
 
@@ -32,11 +34,15 @@ public class DataActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.textViewData)).setText(extra.getString("task"));
         ((TextView) findViewById(R.id.textView2Data)).setText(extra.getString("description"));
         ((CheckBox) findViewById(R.id.checkBoxData)).setChecked(extra.getBoolean("finished"));
+    }
 
-//        Intent intent = new Intent();
-//        intent.putExtra("checked", ((CheckBox) findViewById(R.id.checkBoxData)).isChecked());
-//        setResult(RESULT_OK, intent);
-//        finish();
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra("checked", ((CheckBox) findViewById(R.id.checkBoxData)).isChecked());
+        setResult(RESULT_OK, intent);
+        finish();
+
     }
 
 }
